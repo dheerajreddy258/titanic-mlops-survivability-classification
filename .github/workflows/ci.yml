@@ -33,24 +33,24 @@ jobs:
 #            - name: Log in to Docker Hub
 #              uses: docker/login-action@v2
 #              with:
-#                  username: ${{ secrets.breadkrum }}
-#                  password: ${{ secrets.dckr_pat_KAJ4ASn-Y5hRlbILTbiMr0MQs3Q }}
+#                  username: ${{ secrets.DOCKER_USERNAME }}
+#                  password: ${{ secrets.DOCKER_PASSWORD }}
 
             - name: Build and push Docker image
               uses: docker/build-push-action@v4
               with:
                   context: .
                   push: true
-                  tags: ${{ secrets.breadkrum }}/titanic:latest
+                  tags: ${{ secrets.DOCKER_USERNAME }}/titanic:latest
 
     deploy:
         runs-on: self-hosted
         steps:
             - name: Pull Docker image
-              run: docker pull ${{ secrets.breadkrum }}/titanic:latest
+              run: docker pull ${{ secrets.DOCKER_USERNAME }}/titanic:latest
 
             - name: restart container
               run: |
                   docker stop titanic || true
                   docker rm titanic || true
-                  docker run -d --name titanic -p 8000:8000 ${{ secrets.breadkrum }}/titanic:latest
+                  docker run -d --name titanic -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/titanic:latest
