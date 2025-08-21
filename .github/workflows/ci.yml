@@ -44,7 +44,7 @@ jobs:
                   tags: ${{ secrets.DOCKER_USERNAME }}/titanic:latest
 
     deploy:
-        runs-on: self-hosted
+        runs-on: ubuntu-latest
         steps:
             - name: Pull Docker image
               run: docker pull ${{ secrets.DOCKER_USERNAME }}/titanic:latest
