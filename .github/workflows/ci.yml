@@ -2,7 +2,7 @@ name: titanic
 
 on:
     push:
-        branches: [krum]
+        branches: [BreadKrum-patch-1]
     workflow_dispatch:
             
 jobs:
