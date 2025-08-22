@@ -41,16 +41,16 @@ jobs:
               with:
                   context: .
                   push: true
-                  tags: ${{ secrets.DOCKER_USERNAME }}/titanic-api:latest
+                  tags: ${{ secrets.DOCKER_USERNAME }}/titanic:latest
 
     deploy:
         runs-on: ubuntu-latest
         steps:
             - name: Pull Docker image
-              run: docker pull ${{ secrets.DOCKER_USERNAME }}/titanic-api:latest
+              run: docker pull ${{ secrets.DOCKER_USERNAME }}/titanic:latest
 
             - name: restart container
               run: |
-                  docker stop titanic-api || true
-                  docker rm titanic-api || true
-                  docker run -d --name titanic-api -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/titanic-api:latest
+                  docker stop titanic || true
+                  docker rm titanic || true
+                  docker run -d --name titanic -p 8000:8000 ${{ secrets.DOCKER_USERNAME }}/titanic:latest
