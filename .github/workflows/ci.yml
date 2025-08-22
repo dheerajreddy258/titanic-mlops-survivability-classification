@@ -25,7 +25,7 @@ jobs:
               run: flake8 src api || true
 
             - name: Run pytest
-              run: pytest -q || true
+              run: pytest -q
 
             - name: setup docker buildx
               uses: docker/setup-buildx-action@v2
